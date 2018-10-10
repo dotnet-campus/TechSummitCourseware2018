@@ -1,8 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- 应用程序信息 -->
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>net45;netcoreapp2.0</TargetFrameworks>
+
+    <!-- NuGet 包信息 -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 此项目在打包成 NuGet 包后，会将以下输出路径中的文件放入 NuGet 包中。 -->
+    <!-- 由于我们的 NuGet 包是一个工具包，但 NuGet 自带的工具包不支持携带依赖，所以需要自己来写。-->
+    <None Include="Assets\**" Pack="True" PackagePath="build\" />
+    <None Include="Assets\README.md" />
+    <None Include="$(OutputPath)**\**" Pack="True" PackagePath="tools\" />
+  </ItemGroup>
 
 </Project>

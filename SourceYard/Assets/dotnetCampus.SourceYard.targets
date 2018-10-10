@@ -1,0 +1,5 @@
+﻿<Project>
+  <Target Name="SourceYard" AfterTargets="CoreCompile">
+    <Exec Command="$(MSBuildThisFileDirectory)..\tools\net45\dotnetCampus.SourceYard.exe" />
+  </Target>
+</Project>
